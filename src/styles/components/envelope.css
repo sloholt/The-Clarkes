@@ -1,0 +1,122 @@
+/* ======================================
+ * Envelope — Figma "Invitation" (nodes 8:3 / 8:4)
+ * Image-based: swaps the closed render for the open render on click.
+ * ====================================== */
+
+.envelope-scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(24px, 8vmin, 96px);
+  box-sizing: border-box;
+  background: var(--envelope-backdrop, #33342a);
+}
+
+/* ======================================
+ * Envelope button
+ * ====================================== */
+
+.envelope {
+  --envelope-width: min(560px, 84vw);
+  --open-duration: 0.9s;
+  /* after opening, the whole envelope fades away */
+  --fade-out-delay: 0.5s;
+  --fade-out-duration: 0.9s;
+
+  position: relative;
+  width: var(--envelope-width);
+  /* closed render is 591 x 373 — the resting footprint */
+  aspect-ratio: 591 / 373;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  /* let the open flap spill above the closed footprint */
+  overflow: visible;
+  transition:
+    transform 0.25s ease,
+    opacity var(--fade-out-duration) ease var(--fade-out-delay);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope:not(.envelope--open):hover {
+  transform: translateY(-4px);
+}
+
+.envelope--open {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope:focus-visible {
+  outline: 2px solid var(--color-link, #afc3de);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
+/* ======================================
+ * Renders — stacked, bottom-aligned so the envelope
+ * body sits in the same place in both states.
+ * ====================================== */
+
+.envelope__render {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.28));
+}
+
+.envelope__render--open {
+  visibility: hidden;
+}
+
+.envelope--open .envelope__render--closed {
+  visibility: hidden;
+}
+
+.envelope--open .envelope__render--open {
+  visibility: visible;
+}
+
+/* ======================================
+ * Optional contents overlaid on the open interior
+ * ====================================== */
+
+.envelope__contents {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 6%;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.4s ease;
+}
+
+.envelope--open .envelope__contents {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease calc(var(--open-duration) * 0.6),
+    transform 0.3s ease calc(var(--open-duration) * 0.6);
+}
+
+/* ======================================
+ * Reduced motion
+ * ====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope,
+  .envelope__render,
+  .envelope__contents {
+    transition: none;
+  }
+}
