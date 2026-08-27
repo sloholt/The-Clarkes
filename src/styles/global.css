@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Elli & Winston — Global Stylesheet
+   Color palette + typography system
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   FONTS & TYPOGRAPHY
+
+   Display - Altesse Std Regular 24pt 
+        Note: Altesse Std is served via Adobe Fonts web project so the embed 
+        <link> tag lives in index.html's <head>. This file just references the front-family name. 
+   Subheadings - Baskerville SC Regular 
+   Text base - Baskerville Regular 
+
+   --------------------------------------------------------------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Baskervville+SC&display=swap");
+
+/* Display — script font for names, hero headline, monogram */
+.display,
+h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-text);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+}
+
+TODO
+/* Monogram variant  */
+.monogram {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.05em;
+}
+
+/* Subheading — small caps serif */
+.subheading,
+h2 {
+  font-family: var(--font-subheading);
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  color: var(--color-text-accent);
+  font-weight: 400;
+  margin: 0 0 0.5em;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-subheading);
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0 0 0.5em;
+}
+
+/* Text base */
+p,
+li,
+.text-base {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+.text-muted {
+  color: var(--color-text-secondary);
+}
+
+.text-accent {
+  color: var(--color-text-accent);
+}
+
+/* --------------------------------------------------------------------------
+   COLOR PALETTE
+
+   Base - #FBF8F1
+   Contrast Accent - #AFC3DE
+   Primary Accent 1 - #FFF3AE
+   Primary Accent 2 - #FFFFD6
+   Warm Neutral - #E4D5B7
+   Sage Green - #4E513B
+   Text Base - #33342A
+   Text Accent - #8A9A6E
+
+   --------------------------------------------------------------------------*/
+:root {
+  /* Base */
+  --color-base: #fbf8f1; /* Ivory cream — page background */
+  --color-base-text: #33342a; /* Dark warm charcoal — primary body text */
+
+  /* Accents */
+  --color-primary-accent: #fff3ae; /* Butter yellow — buttons, highlights */
+  --color-primary-accent-2: #ffffd6; /* Pale lemon — subtle fills, secondary tint */
+  --color-contrast-accent: #afc3de; /* Dusty hydrangea blue — links, icons, pops of contrast */
+  --color-text-accent: #8a9a6e; /* Sage green — accent text, small caps, dividers */
+  --color-text-muted: #4e513b; /* Dark olive — muted/secondary text, captions */
+  --color-warm-neutral: #e4d5b7; /* Warm beige — borders, footer, grounding neutral */
+
+  /* Semantic aliases (use these in components) */
+  --color-background: var(--color-base);
+  --color-text: var(--color-base-text);
+  --color-text-secondary: var(--color-text-muted);
+  --color-link: var(--color-contrast-accent);
+  --color-border: var(--color-warm-neutral);
+  --color-button-bg: var(--color-primary-accent);
+  --color-button-text: var(--color-base-text);
+
+  /* Typography */
+  --font-display: "altesse-std-24pt", cursive;
+  --font-subheading: "Baskervville SC", "Baskervville", serif;
+  --font-body: "Baskervville", Georgia, serif;
+}
