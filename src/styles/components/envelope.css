@@ -85,6 +85,34 @@
 }
 
 /* ======================================
+ * Optional monogram sitting on the closed envelope face
+ * ====================================== */
+
+.envelope__monogram {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-family: var(--font-display);
+  color: var(--color-text-muted, #4e513b);
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+.envelope__monogram span {
+  margin-left: -0.1em;
+}
+
+.envelope--open .envelope__monogram {
+  opacity: 0;
+}
+
+/* ======================================
  * Optional contents overlaid on the open interior
  * ====================================== */
 
@@ -116,6 +144,7 @@
 @media (prefers-reduced-motion: reduce) {
   .envelope,
   .envelope__render,
+  .envelope__monogram,
   .envelope__contents {
     transition: none;
   }

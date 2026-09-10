@@ -4,7 +4,7 @@ import '../styles/components/envelope.css'
 const CLOSED_SRC = '/images/envelope-closed.png'
 const OPEN_SRC = '/images/envelope-open.png'
 
-export default function Envelope({ defaultOpen = false, onToggle, children }) {
+export default function Envelope({ defaultOpen = false, onToggle, monogram, children }) {
   const [open, setOpen] = useState(defaultOpen)
 
   const toggle = () => {
@@ -38,6 +38,11 @@ export default function Envelope({ defaultOpen = false, onToggle, children }) {
           src={CLOSED_SRC}
           alt="A cream envelope with a lace trim"
         />
+        {monogram ? (
+          <span className="envelope__monogram" aria-hidden="true">
+            {monogram}
+          </span>
+        ) : null}
         {children ? <div className="envelope__contents">{children}</div> : null}
       </button>
     </div>

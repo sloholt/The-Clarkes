@@ -1,0 +1,417 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RSVP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      Keep your existing Adobe Fonts embed here for Altesse Std.
+      Example structure:
+      <link rel="stylesheet" href="https://use.typekit.net/YOUR-KIT-ID.css" />
+    -->
+
+    <!-- Global wedding website styles -->
+    <link rel="stylesheet" href="/global.css" />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--color-background);
+        color: var(--color-text);
+        font-family: var(--font-body);
+      }
+
+      body {
+        padding: 64px 20px 100px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .page {
+        width: 100%;
+        max-width: 620px;
+      }
+
+      /* =========================================================
+         HEADER
+         ========================================================= */
+
+      header {
+        text-align: center;
+        margin-bottom: 44px;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-style: normal;
+        font-size: 52px;
+        letter-spacing: 0.08em;
+        margin: 0 0 26px;
+        color: var(--color-text);
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid var(--color-text-accent);
+        width: 100%;
+        margin: 0 0 22px;
+      }
+
+      .subtitle {
+        font-family: var(--font-body);
+        font-size: 19px;
+        color: var(--color-text-secondary);
+        margin: 0;
+        letter-spacing: 0.02em;
+      }
+
+      /* =========================================================
+         LACE FRAME
+         ========================================================= */
+
+      .lace-frame {
+        border-style: solid;
+        border-width: 72px;
+
+        /*
+          Since lace_rectangle.png is inside public/images,
+          the browser path starts at /images rather than /public/images.
+        */
+        border-image-source: url("/images/lace_rectangle.png");
+        border-image-slice: 145 fill;
+        border-image-repeat: round;
+      }
+
+      /* =========================================================
+         FORM
+         ========================================================= */
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 34px;
+      }
+
+      .field label,
+      .group-label {
+        display: block;
+        font-family: var(--font-subheading);
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        color: var(--color-text);
+        margin-bottom: 10px;
+      }
+
+      .field input[type="text"],
+      .field input[type="email"],
+      .field textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: 18px;
+        padding: 6px 2px 8px;
+        outline: none;
+        resize: none;
+        transition: border-color 0.25s ease;
+      }
+
+      .field textarea {
+        border: 1px solid var(--color-border);
+        padding: 12px 14px;
+        border-radius: 2px;
+        min-height: 64px;
+        line-height: 1.5;
+      }
+
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: var(--color-text-secondary);
+        opacity: 0.55;
+        font-style: italic;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: var(--color-text-accent);
+      }
+
+      .helper {
+        font-family: var(--font-body);
+        font-size: 14.5px;
+        font-style: italic;
+        color: var(--color-text-secondary);
+        margin: 6px 0 0;
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+         ATTENDANCE RADIO OPTIONS
+         ========================================================= */
+
+      .attend-options {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .attend-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-size: 17px;
+        color: var(--color-text);
+      }
+
+      .attend-option input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border: 1px solid var(--color-text-accent);
+        border-radius: 50%;
+        margin: 0;
+        position: relative;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .attend-option input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--color-text-accent);
+      }
+
+      /* =========================================================
+         TEXTAREAS
+         ========================================================= */
+
+      .question-box textarea {
+        min-height: 110px;
+      }
+
+      .address-box textarea,
+      .dietary-box textarea {
+        min-height: 84px;
+      }
+
+      /* =========================================================
+         SUBMIT BUTTON
+         ========================================================= */
+
+      .submit-row {
+        margin-top: 12px;
+        text-align: center;
+      }
+
+      button.submit {
+        background: var(--color-button-bg);
+        border: 1px solid var(--color-button-bg);
+        color: var(--color-button-text);
+        font-family: var(--font-subheading);
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.16em;
+        padding: 14px 40px;
+        cursor: pointer;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      button.submit:hover {
+        background: var(--color-text-accent);
+        border-color: var(--color-text-accent);
+        color: var(--color-background);
+      }
+
+      /* =========================================================
+         THANK YOU MESSAGE
+         ========================================================= */
+
+      .thanks {
+        display: none;
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      .thanks h2 {
+        font-family: var(--font-subheading);
+        letter-spacing: 0.15em;
+        font-weight: 400;
+        font-size: 26px;
+        margin: 0 0 12px;
+        color: var(--color-text-accent);
+      }
+
+      .thanks p {
+        font-family: var(--font-body);
+        color: var(--color-text-secondary);
+        font-size: 17px;
+        margin: 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* =========================================================
+         MOBILE
+         ========================================================= */
+
+      @media (max-width: 480px) {
+        body {
+          padding: 48px 12px 80px;
+        }
+
+        .lace-frame {
+          margin: 40px 8px 26px;
+          border-width: 48px;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .attend-options {
+          gap: 18px;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <h1>RSVP</h1>
+        <hr class="divider" />
+        <p class="subtitle">Kindly respond by October 30th</p>
+      </header>
+
+      <div class="lace-frame">
+        <form id="rsvpForm">
+          <div class="field">
+            <label for="name">Your full name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Full name"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <span class="group-label">Will you be joining us</span>
+
+            <div class="attend-options">
+              <label class="attend-option">
+                <input type="radio" name="attendance" value="accept" required />
+                Joyfully accept
+              </label>
+
+              <label class="attend-option">
+                <input type="radio" name="attendance" value="decline" />
+                Regretfully cannot make it
+              </label>
+            </div>
+
+            <p class="helper">
+              We are only able to accommodate those listed on the invitation, no
+              plus ones.
+            </p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="field address-box">
+            <label for="address">Mailing address</label>
+            <textarea
+              id="address"
+              name="address"
+              placeholder="Street, city, state, zip"
+            ></textarea>
+          </div>
+
+          <div class="field dietary-box">
+            <label for="dietary"> Dietary restrictions &amp; allergies </label>
+
+            <textarea
+              id="dietary"
+              name="dietary"
+              placeholder="Guest name &amp; requirement"
+            ></textarea>
+
+            <p class="helper">
+              Please list any dietary requirements or allergies, and the name of
+              the guest they apply to.
+            </p>
+          </div>
+
+          <div class="field question-box">
+            <label for="questions">
+              Please feel free to ask us any questions below
+            </label>
+
+            <textarea
+              id="questions"
+              name="questions"
+              placeholder="Your question"
+            ></textarea>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="submit">Send RSVP</button>
+          </div>
+        </form>
+
+        <div class="thanks" id="thanksMessage">
+          <h2>Thank You</h2>
+          <p>Your response has been received.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("rsvpForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          this.classList.add("hidden");
+
+          document.getElementById("thanksMessage").style.display = "block";
+        });
+    </script>
+  </body>
+</html>

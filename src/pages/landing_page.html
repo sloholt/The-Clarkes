@@ -1,0 +1,242 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Clarkes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Adobe Fonts: Altesse Std — display / script face (web project "welli-wedding") -->
+    <link rel="stylesheet" href="https://use.typekit.net/qon6mcc.css" />
+
+    <!-- Global wedding website styles: colour palette + typography system -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+
+    <style>
+      /* ---------------------------------------------------------------
+         Fallback tokens — mirror src/styles/global.css so this page
+         still renders correctly if the stylesheet above fails to load
+         (e.g. opened directly from disk).
+         --------------------------------------------------------------- */
+      :root {
+        --color-primary-accent-2: #ffffd6; /* pale lemon — "introducing" + names */
+        --color-text-accent: #8a9a6e; /* sage green — the open-envelope hint */
+        --color-text-muted: #4e513b; /* dark olive — envelope monogram */
+        --font-display: "altesse-std-24pt", cursive;
+        --font-subheading: "Baskervville SC", "Baskervville", serif;
+        --font-body: "Baskervville", Georgia, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+
+      body {
+        /* Dark backdrop so the near-black lily photo letterboxes cleanly
+           and the cream envelope reads against it. */
+        background: #111110;
+        font-family: var(--font-body);
+        overflow-x: hidden;
+      }
+
+      /* Full-bleed lily background photo (public/images/lily_background.png).
+         Figma has it at 90% opacity, zoomed to fill, biased slightly upward. */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("/images/lily_background.png") center 42% / cover no-repeat;
+        opacity: 0.9;
+        z-index: 0;
+      }
+
+      /* ---------------------------------------------------------------
+         LAYOUT — centred vertical stack
+         --------------------------------------------------------------- */
+      .landing {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 64px 20px 80px;
+      }
+
+      /* "introducing" — small-caps serif, pale lemon */
+      .intro {
+        font-family: var(--font-subheading);
+        font-variant: small-caps;
+        letter-spacing: 0.14em;
+        color: var(--color-primary-accent-2);
+        font-size: clamp(1.05rem, 2.2vw, 1.75rem);
+        margin: 0;
+      }
+
+      /* "The Clarkes" — display script, pale lemon */
+      .names {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-style: normal;
+        color: var(--color-primary-accent-2);
+        font-size: clamp(3.25rem, 9vw, 6.25rem);
+        letter-spacing: 0.05em;
+        line-height: 1;
+        margin: 0.05em 0 0;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+      }
+
+      /* ---------------------------------------------------------------
+         ENVELOPE — clickable, sits just under the names
+         --------------------------------------------------------------- */
+      .envelope {
+        appearance: none;
+        border: none;
+        background: none;
+        padding: 0;
+        margin: -0.5rem 0 0;
+        position: relative;
+        width: min(567px, 82vw);
+        cursor: pointer;
+        line-height: 0;
+        transition: transform 0.35s ease;
+      }
+
+      .envelope:hover {
+        transform: translateY(-4px);
+      }
+
+      .envelope:focus-visible {
+        outline: 2px solid var(--color-primary-accent-2);
+        outline-offset: 8px;
+      }
+
+      .envelope__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: opacity 0.6s ease;
+      }
+
+      /* the "open" render is stacked on top of the "closed" one and fades in */
+      .envelope__img--open {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+      }
+
+      .envelope.is-open .envelope__img--closed {
+        opacity: 0;
+      }
+
+      .envelope.is-open .envelope__img--open {
+        opacity: 1;
+      }
+
+      /* W E monogram overlaid on the envelope face — dark olive script */
+      .monogram {
+        position: absolute;
+        left: 50%;
+        top: 54%;
+        transform: translate(-50%, -50%);
+        font-family: var(--font-display);
+        color: var(--color-text-muted);
+        font-size: clamp(2rem, 4.6vw, 3.4rem);
+        line-height: 1;
+        letter-spacing: 0.02em;
+        transition: opacity 0.4s ease;
+      }
+
+      .monogram span {
+        margin-left: -0.1em;
+      }
+
+      .envelope.is-open .monogram {
+        opacity: 0;
+      }
+
+      /* "click envelope to open" — small-caps serif, sage green */
+      .hint {
+        font-family: var(--font-subheading);
+        font-variant: small-caps;
+        letter-spacing: 0.14em;
+        color: var(--color-text-accent);
+        font-size: clamp(1.05rem, 2.2vw, 1.75rem);
+        margin: 2rem 0 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .envelope.is-open ~ .hint {
+        opacity: 0;
+      }
+
+      @media (max-width: 640px) {
+        .landing {
+          padding: 48px 16px 64px;
+        }
+
+        .names {
+          letter-spacing: 0.03em;
+        }
+
+        .hint {
+          margin-top: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="landing">
+      <p class="intro">introducing</p>
+
+      <h1 class="names">The Clarkes</h1>
+
+      <button
+        type="button"
+        class="envelope"
+        aria-label="Open the invitation"
+      >
+        <img
+          class="envelope__img envelope__img--closed"
+          src="/images/envelope-closed.png"
+          alt="A cream envelope with a lace trim"
+        />
+        <img
+          class="envelope__img envelope__img--open"
+          src="/images/envelope-open.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <span class="monogram" aria-hidden="true">W<span>E</span></span>
+      </button>
+
+      <p class="hint">click envelope to open</p>
+    </main>
+
+    <script>
+      const envelope = document.querySelector(".envelope");
+
+      envelope.addEventListener("click", () => {
+        if (envelope.classList.contains("is-open")) return;
+        envelope.classList.add("is-open");
+        envelope.setAttribute("aria-label", "Opening the invitation");
+
+        // once the envelope has visually opened, continue to the RSVP page
+        window.setTimeout(() => {
+          window.location.href = "rsvp.html";
+        }, 900);
+      });
+    </script>
+  </body>
+</html>
