@@ -15,13 +15,12 @@
   text-align: center;
   padding: 64px 20px 80px;
   box-sizing: border-box;
-  /* dark backdrop so the near-black lily photo letterboxes cleanly and the
-     cream envelope reads against it */
   background: #111110;
   overflow: hidden;
 }
 
-/* full-bleed lily background photo — 90% opacity, biased slightly upward */
+/* lily photo belongs to the intro section — it scrolls away together with the
+   lace invitation when the user moves down to the instructions */
 .landing::before {
   content: "";
   position: absolute;
@@ -36,7 +35,7 @@
   z-index: 1;
 }
 
-/* the text fades out on open; the lily background stays put */
+/* the text fades out on open; the lily backdrop stays put */
 .landing__intro,
 .landing__names,
 .landing__hint {
@@ -48,6 +47,28 @@
 .landing--opened .landing__hint {
   opacity: 0;
   pointer-events: none;
+}
+
+/* lace invitation — hidden until the envelope has opened, then fades in over
+   the still lily background once the envelope/text have cleared */
+.landing .landing__invite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(620px, 88vw);
+  height: auto;
+  max-height: 88vh;
+  object-fit: contain;
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 40px rgba(0, 0, 0, 0.45));
+  transition: opacity 0.9s ease 1.1s;
+}
+
+.landing--opened .landing__invite {
+  opacity: 1;
 }
 
 /* "introducing" — small-caps serif, pale lemon */

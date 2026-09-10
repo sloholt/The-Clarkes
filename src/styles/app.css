@@ -1,0 +1,17 @@
+/* ==========================================================================
+   App shell — vertical scroll: intro (LandingPage), InstructionsPage,
+   CollagePage, then RsvpPage. Each section owns its own background.
+   ========================================================================== */
+
+.app {
+  position: relative;
+  background: #111110;
+}
+
+/* before the envelope is opened, the page is pinned to the intro —
+   nothing below the first screen can be scrolled into view */
+.app--locked {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}

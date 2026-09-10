@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Collage page — Figma "collage_page" (node 39:24)
+   A field-photo backdrop with a scrapbook of layered element images.
+   The stage mirrors the Figma frame (1280 x 1940); every piece is placed
+   as a percentage of the stage so they scale together.
+   Palette + type inherited from src/styles/global.css.
+   ========================================================================== */
+
+.collage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 64px) 0;
+  background: var(--color-base, #fbf8f1);
+}
+
+.collage__stage {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 1280 / 1940;
+  overflow: hidden;
+}
+
+.collage__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* layered pieces — box comes from each Figma node's bounds, image is fitted
+   inside it undistorted */
+.collage__el {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* interactive piece — "Our Story" badge links to the Our Story page */
+.collage__link {
+  pointer-events: auto;
+  cursor: pointer;
+  display: block;
+}
+
+.collage__link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* round card + "View Details Here" (node 75:912) */
+.collage__el--details {
+  left: 13.181%;
+  top: 40.679%;
+  width: 37.58%;
+  height: 35.449%;
+}
+
+/* envelope, photo strip, save-the-date, florals (node 91:5) */
+.collage__el--static {
+  left: 8.984%;
+  top: 5.928%;
+  width: 85.078%;
+  height: 73%;
+}
+
+/* "Our Story / click here" badge (node 75:922) */
+.collage__el--story {
+  left: 42.493%;
+  top: 51.165%;
+  width: 23.494%;
+  height: 13.01%;
+}

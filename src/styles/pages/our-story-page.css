@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Our Story page — full-bleed display of running_background_photo.png.
+   Reached from the "Our Story" badge on the collage page.
+   ========================================================================== */
+
+.our-story {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #111110;
+}
+
+/* show the photo at its full height and let the page scroll through it */
+.our-story__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.our-story__back {
+  position: fixed;
+  top: clamp(16px, 3vw, 32px);
+  left: clamp(16px, 3vw, 32px);
+  z-index: 2;
+  font-family: var(--font-subheading);
+  font-variant: small-caps;
+  letter-spacing: 0.12em;
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  color: var(--color-base, #fbf8f1);
+  text-decoration: none;
+  padding: 8px 14px;
+  background: rgba(51, 52, 42, 0.55);
+  border-radius: 2px;
+  transition: background 0.2s ease;
+}
+
+.our-story__back:hover {
+  background: rgba(51, 52, 42, 0.85);
+}

@@ -16,6 +16,12 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Baskervville+SC&display=swap");
 
+/* Reset the default body margin so full-bleed sections reach every edge */
+html,
+body {
+  margin: 0;
+}
+
 /* Display — script font for names, hero headline, monogram */
 .display,
 h1 {

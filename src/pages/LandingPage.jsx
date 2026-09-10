@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import Envelope from '../components/Envelope.jsx'
 import '../styles/pages/landing-page.css'
 
-export default function LandingPage() {
-  const [opened, setOpened] = useState(false)
-
+export default function LandingPage({ opened = false, onOpen }) {
   const handleToggle = (open) => {
-    if (open) setOpened(true)
+    if (open) onOpen?.()
   }
 
   return (
@@ -16,6 +13,7 @@ export default function LandingPage() {
       <h1 className="landing__names">The Clarkes</h1>
 
       <Envelope
+        defaultOpen={opened}
         onToggle={handleToggle}
         monogram={
           <>
@@ -25,6 +23,13 @@ export default function LandingPage() {
       />
 
       <p className="landing__hint">click envelope to open</p>
+
+      {/* revealed once the envelope has opened and faded away */}
+      <img
+        className="landing__invite"
+        src="/images/lace_invite.png"
+        alt="The Clarkes invitation"
+      />
     </main>
   )
 }

@@ -1,0 +1,321 @@
+/* ==========================================================================
+   RSVP page — ported verbatim from src/pages/rsvp.html, scoped under .rsvp
+   so the former html/body rules don't leak into the rest of the app.
+   Design and formatting are unchanged.
+   ========================================================================== */
+
+.rsvp *,
+.rsvp *::before,
+.rsvp *::after {
+  box-sizing: border-box;
+}
+
+/* was html, body + body in rsvp.html */
+.rsvp {
+  background: var(--color-text-muted);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  padding: 64px 20px 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.rsvp .page {
+  width: 100%;
+  max-width: 780px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.rsvp header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+/* header + deadline — Figma "rsvp page" (node 16:18):
+   spaced Baskervville SC caps, a hairline rule, and a large Baskervville
+   deadline, all white on the olive-green ground */
+.rsvp h1 {
+  font-family: var(--font-subheading);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  margin: 0 0 14px;
+  color: var(--color-text);
+}
+
+.rsvp .divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  width: 100%;
+  margin: 0 0 22px;
+}
+
+.rsvp .subtitle {
+  font-family: var(--font-body);
+  font-size: 32px;
+  color: var(--color-text-secondary);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* =========================================================
+   LACE FRAME
+   ========================================================= */
+
+.rsvp .lace-frame {
+  border-style: solid;
+  border-width: 92px;
+
+  /*
+    Since lace_rectangle.png is inside public/images,
+    the browser path starts at /images rather than /public/images.
+  */
+  border-image-source: url("/images/lace_rectangle.png");
+  border-image-slice: 145 fill;
+  border-image-repeat: round;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.rsvp form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.rsvp .field label,
+.rsvp .group-label {
+  display: block;
+  font-family: var(--font-subheading);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.rsvp .field input[type="text"],
+.rsvp .field input[type="email"],
+.rsvp .field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 20px;
+  padding: 8px 2px 10px;
+  outline: none;
+  resize: none;
+  transition: border-color 0.25s ease;
+}
+
+.rsvp .field textarea {
+  border: 1px solid var(--color-border);
+  padding: 14px 16px;
+  border-radius: 2px;
+  min-height: 76px;
+  line-height: 1.5;
+}
+
+.rsvp .field input::placeholder,
+.rsvp .field textarea::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.55;
+  font-style: italic;
+}
+
+.rsvp .field input:focus,
+.rsvp .field textarea:focus {
+  border-color: var(--color-text-accent);
+}
+
+.rsvp .helper {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin: 8px 0 0;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ATTENDANCE RADIO OPTIONS
+   ========================================================= */
+
+.rsvp .attend-options {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.rsvp .attend-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 19px;
+  color: var(--color-text);
+}
+
+.rsvp .attend-option input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--color-text-accent);
+  border-radius: 50%;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.rsvp .attend-option input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-text-accent);
+}
+
+/* =========================================================
+   TEXTAREAS
+   ========================================================= */
+
+.rsvp .question-box textarea {
+  min-height: 128px;
+}
+
+.rsvp .address-box textarea,
+.rsvp .dietary-box textarea {
+  min-height: 98px;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.rsvp .submit-row {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.rsvp button.submit {
+  background: var(--color-button-bg);
+  border: 1px solid var(--color-button-bg);
+  color: var(--color-button-text);
+  font-family: var(--font-subheading);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  padding: 16px 48px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.rsvp button.submit:hover {
+  background: var(--color-text-accent);
+  border-color: var(--color-text-accent);
+  color: var(--color-background);
+}
+
+/* =========================================================
+   THANK YOU MESSAGE
+   ========================================================= */
+
+.rsvp .thanks {
+  display: none;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.rsvp .thanks h2 {
+  font-family: var(--font-subheading);
+  letter-spacing: 0.15em;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0 0 14px;
+  color: var(--color-text-accent);
+}
+
+.rsvp .thanks p {
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+  font-size: 19px;
+  margin: 0;
+}
+
+.rsvp .hidden {
+  display: none;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+/* =========================================================
+   WHITE TEXT
+   All copy on the RSVP page is white for legibility on the
+   dark olive background.
+   ========================================================= */
+
+.rsvp,
+.rsvp h1,
+.rsvp .subtitle,
+.rsvp .field label,
+.rsvp .group-label,
+.rsvp .field input[type="text"],
+.rsvp .field input[type="email"],
+.rsvp .field textarea,
+.rsvp .helper,
+.rsvp .attend-option,
+.rsvp .thanks h2,
+.rsvp .thanks p {
+  color: #fff;
+}
+
+.rsvp .field input::placeholder,
+.rsvp .field textarea::placeholder {
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .rsvp {
+    padding: 48px 12px 80px;
+  }
+
+  .rsvp .lace-frame {
+    margin: 40px 8px 26px;
+    border-width: 48px;
+  }
+
+  .rsvp h1 {
+    font-size: 34px;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+  }
+
+  .rsvp .subtitle {
+    font-size: 22px;
+  }
+
+  .rsvp .attend-options {
+    gap: 18px;
+    flex-direction: column;
+  }
+}
