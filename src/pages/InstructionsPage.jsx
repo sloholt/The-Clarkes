@@ -18,7 +18,7 @@ export default function InstructionsPage() {
           RSVP information and a few extra touches.
         </p>
 
-        <p className="instructions__signoff">Some type of signature ?</p>
+        <p className="instructions__signoff">Here's to the beginning of our forever</p>
 
         <p className="instructions__names">Elli &amp; Winston</p>
       </div>
