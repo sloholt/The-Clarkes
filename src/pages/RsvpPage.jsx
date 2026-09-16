@@ -1,12 +1,48 @@
 import { useState } from 'react'
 import '../styles/pages/rsvp-page.css'
 
+// Paste the Web App URL your guest sends you (ends in /exec)
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxLyrYYTPqkQI18KJr8xh5cvYVYNe4gO5SteRqicXk2mLHKigltfbrtbYHBT1wc1a0cwA/exec'
+
 export default function RsvpPage() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError('')
+    setSubmitting(true)
+
+    const formData = new FormData(e.target)
+
+    const data = {
+      name: formData.get('name'),
+      attendance: formData.get('attendance'),
+      email: formData.get('email'),
+      address: formData.get('address'),
+      dietary: formData.get('dietary'),
+      questions: formData.get('questions'),
+    }
+
+    try {
+      // mode: "no-cors" is required for Apps Script web apps — the response
+      // itself can't be read, so we just assume success if fetch doesn't throw.
+      await fetch(WEB_APP_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      setSubmitted(true)
+    } catch (err) {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -25,7 +61,7 @@ export default function RsvpPage() {
             onSubmit={handleSubmit}
           >
             <div className="field">
-              <label htmlFor="name">Your full name</label>
+              <label htmlFor="name">Your full name(s)</label>
               <input
                 type="text"
                 id="name"
@@ -101,11 +137,18 @@ export default function RsvpPage() {
                 name="questions"
                 placeholder="Your question"
               />
+              <p className="helper">
+                Or check out our FAQ page for more info
+                
+              </p>
             </div>
+            
+
+            {error && <p className="helper" style={{ color: '#c0392b' }}>{error}</p>}
 
             <div className="submit-row">
-              <button type="submit" className="submit">
-                Send RSVP
+              <button type="submit" className="submit" disabled={submitting}>
+                {submitting ? 'Sending...' : 'Send RSVP'}
               </button>
             </div>
           </form>
@@ -116,7 +159,7 @@ export default function RsvpPage() {
             style={submitted ? { display: 'block' } : undefined}
           >
             <h2>Thank You</h2>
-            <p>Your response has been received.</p>
+            <p>Your response has been received</p>
           </div>
         </div>
       </div>
