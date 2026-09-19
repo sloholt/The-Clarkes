@@ -1,0 +1,204 @@
+/* ==========================================================================
+   Details page — Figma "details" (node 81:932), 1280 x 4036.
+   Every piece is placed in Figma px scaled by --u (1px of the frame), so the
+   whole page shrinks and grows together like the collage page.
+   Palette + type inherited from src/styles/global.css.
+   ========================================================================== */
+
+.details {
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+  background: var(--color-base, #fbf8f1);
+}
+
+.details__stage {
+  --u: calc(min(100cqw, 1280px) / 1280);
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 1280 / 4036;
+  overflow: hidden;
+}
+
+.details__stage > *,
+.details__band > * {
+  position: absolute;
+}
+
+.details__img {
+  display: block;
+  object-fit: cover;
+  max-width: none;
+  pointer-events: none;
+}
+
+/* --- text -------------------------------------------------------------- */
+
+.details__txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  line-height: normal;
+  color: var(--color-base-text, #33342a);
+}
+
+/* global.css styles bare <p>; keep paragraphs inheriting from the text box */
+.details__txt p {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.details__sc {
+  font-family: var(--font-subheading);
+  font-weight: 400;
+}
+
+.details__display {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+.details__body {
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+.details__green { color: var(--color-text-muted, #4e513b); }
+.details__ivory { color: var(--color-base, #fbf8f1); }
+.details__accent { color: #fff3ae; }
+.details__pale { color: var(--color-primary-accent-2, #ffffd6); }
+.details__beige { color: var(--color-warm-neutral, #e4d5b7); }
+
+/* paragraphs separated by a blank line, as in the design */
+.details__stack p + p {
+  margin-top: 1.25em;
+}
+
+.details__medium {
+  font-style: normal;
+  font-weight: 500;
+}
+
+.details__stack strong,
+.details__glance-copy strong {
+  font-weight: 700;
+}
+
+.details__glance-copy p {
+  line-height: 1.667;
+}
+
+.details__glance-copy p + p {
+  margin-top: 0;
+}
+
+.details__faq-q {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.details__faq-q span {
+  display: block;
+}
+
+/* --- "WE" monogram ------------------------------------------------------ */
+
+.details__mono {
+  font-family: var(--font-display);
+  color: var(--color-text-muted, #4e513b);
+}
+
+/* the W is right/bottom-anchored and the E centred, so they overlap */
+.details__mono--w {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* --- nav ---------------------------------------------------------------- */
+
+.details__nav a,
+.details__nav span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-subheading);
+  font-size: calc(var(--u) * 24);
+  letter-spacing: calc(var(--u) * 2.4);
+  color: var(--color-base-text, #33342a);
+  text-decoration: none;
+}
+
+.details__nav a:hover {
+  color: var(--color-text-accent, #8a9a6e);
+}
+
+/* --- rules, bands, swatches -------------------------------------------- */
+
+.details__rule {
+  height: 0;
+  border-top: 1px solid;
+}
+
+.details__vrule {
+  width: 0;
+  border-left: 1px solid;
+}
+
+.details__vrule--thick {
+  border-left-width: 2px;
+}
+
+.details__rule--sage,
+.details__vrule--sage {
+  border-color: var(--color-text-accent, #8a9a6e);
+}
+
+.details__rule--pale,
+.details__vrule--pale {
+  border-color: var(--color-primary-accent-2, #ffffd6);
+}
+
+.details__band--green {
+  background: var(--color-text-muted, #4e513b);
+  overflow: hidden;
+}
+
+.details__swatch {
+  border-radius: 50%;
+}
+
+/* lace circle crop from the design */
+.details__lace {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.details__lace img {
+  position: absolute;
+  left: -0.11%;
+  top: -9.94%;
+  width: 100%;
+  height: 109.84%;
+  max-width: none;
+}
+
+/* linked badge images (location, registry) */
+.details__badge {
+  display: block;
+}
+
+.details__badge img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details__nowrap {
+  white-space: nowrap;
+}

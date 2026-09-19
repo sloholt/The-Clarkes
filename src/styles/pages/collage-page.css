@@ -10,6 +10,11 @@
   position: relative;
   display: flex;
   justify-content: center;
+  /* at least one screen tall, like the intro sections; art stays centred */
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
   padding: clamp(24px, 5vw, 64px) 0;
   background: var(--color-base, #fbf8f1);
 }

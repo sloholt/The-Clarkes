@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Contact — Figma frame (node 76:928), 1280 x 316.
+   Closing "questions?" block at the end of the home page. Pieces are placed in
+   Figma px scaled by --u so the frame scales as one, like the collage page.
+   ========================================================================== */
+
+.contact {
+  container-type: inline-size;
+  display: flex;
+  justify-content: center;
+  /* at least one screen tall, like the intro sections; art stays centred */
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--color-base, #fbf8f1);
+}
+
+.contact__stage {
+  --u: calc(min(100cqw, 1280px) / 1280);
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 1280 / 316;
+  overflow: hidden;
+}
+
+.contact__fade {
+  position: absolute;
+  left: calc(var(--u) * 20);
+  top: calc(var(--u) * 23);
+  width: calc(var(--u) * 236);
+  height: calc(var(--u) * 283);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.contact__lilies {
+  position: absolute;
+  left: calc(var(--u) * 1079);
+  top: calc(var(--u) * -1);
+  width: calc(var(--u) * 201);
+  height: calc(var(--u) * 316);
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* WE_green (node 134:26), just left of "can't wait to celebrate…" */
+.contact__logo {
+  position: absolute;
+  left: calc(var(--u) * 492);
+  top: calc(var(--u) * 221);
+  width: calc(var(--u) * 42);
+  height: calc(var(--u) * 35);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.contact__copy {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--u) * 61);
+  transform: translateX(-50%);
+  width: calc(var(--u) * 656);
+  text-align: center;
+  color: #000;
+}
+
+.contact__title {
+  margin: 0;
+  height: calc(var(--u) * 52);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-subheading);
+  font-weight: 400;
+  font-size: calc(var(--u) * 34);
+  letter-spacing: calc(var(--u) * 3.4);
+  color: var(--color-text-muted, #4e513b);
+}
+
+.contact__text {
+  margin: calc(var(--u) * 16) auto 0;
+  width: calc(var(--u) * 386);
+  font-family: var(--font-body);
+  font-size: calc(var(--u) * 16);
+  line-height: calc(var(--u) * 25);
+  letter-spacing: calc(var(--u) * 1.6);
+}
+
+.contact__text a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.contact__text--closing {
+  /* sits right of centre in the design (node 131:9) */
+  margin: calc(var(--u) * 19) 0 0 calc(var(--u) * 212);
+  width: calc(var(--u) * 291);
+}

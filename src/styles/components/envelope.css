@@ -91,7 +91,7 @@
 .envelope__monogram {
   position: absolute;
   left: 50%;
-  top: 54%;
+  top: 51%;
   transform: translate(-50%, -50%);
   z-index: 2;
   font-family: var(--font-display);
@@ -104,8 +104,11 @@
   transition: opacity 0.3s ease;
 }
 
-.envelope__monogram span {
-  margin-left: -0.1em;
+/* WE logo image, sized to roughly fill the box the old lettering occupied */
+.envelope__monogram img {
+  display: block;
+  height: clamp(3rem, 6.9vw, 5.1rem);
+  width: auto;
 }
 
 .envelope--open .envelope__monogram {

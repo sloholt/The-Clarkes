@@ -46,7 +46,7 @@ export default function RsvpPage() {
   }
 
   return (
-    <div className="rsvp">
+    <div className="rsvp" id="rsvp">
       <div className="page">
         <header>
           <h1>RSVP</h1>

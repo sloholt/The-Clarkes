@@ -42,3 +42,10 @@
 .our-story__back:hover {
   background: rgba(51, 52, 42, 0.85);
 }
+
+@media (max-width: 640px) {
+  .our-story__back {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}

@@ -4,14 +4,19 @@ import LandingPage from './pages/LandingPage.jsx'
 import InstructionsPage from './pages/InstructionsPage.jsx'
 import CollagePage from './pages/CollagePage.jsx'
 import RsvpPage from './pages/RsvpPage.jsx'
+import ContactComponent from './components/ContactComponent.jsx'
 import OurStoryPage from './pages/OurStoryPage.jsx'
+import DetailsPage from './pages/DetailsPage.jsx'
 import './styles/app.css'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    // "/#rsvp" etc. jump to that section; anything else starts at the top
+    const target = hash ? document.getElementById(hash.slice(1)) : null
+    if (target) target.scrollIntoView()
+    else window.scrollTo(0, 0)
+  }, [pathname, hash])
   return null
 }
 
@@ -22,6 +27,7 @@ function HomeScroll({ opened, onOpen }) {
       <InstructionsPage />
       <CollagePage />
       <RsvpPage />
+      <ContactComponent />
     </div>
   )
 }
@@ -40,6 +46,7 @@ export default function App() {
           element={<HomeScroll opened={opened} onOpen={() => setOpened(true)} />}
         />
         <Route path="/our-story" element={<OurStoryPage />} />
+        <Route path="/details" element={<DetailsPage />} />
       </Routes>
     </>
   )

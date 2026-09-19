@@ -22,6 +22,17 @@ body {
   margin: 0;
 }
 
+/* phones: keep text at the size we set (no auto-inflation) and never scroll sideways */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
 /* Display — script font for names, hero headline, monogram */
 .display,
 h1 {

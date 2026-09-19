@@ -15,11 +15,7 @@ export default function LandingPage({ opened = false, onOpen }) {
       <Envelope
         defaultOpen={opened}
         onToggle={handleToggle}
-        monogram={
-          <>
-            W<span>E</span>
-          </>
-        }
+        monogram={<img src="/images/WE_green.png" alt="" />}
       />
 
       <p className="landing__hint">click envelope to open</p>
