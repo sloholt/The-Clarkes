@@ -1,13 +1,7 @@
 /* ==========================================================================
    Our Story page — Figma "story" (node 33:169).
-   Title + copy overlaid on the sky of running_background_photo.png.
+   Full-height scrolling photo (running_background_photo.png), no overlay text.
    Reached from the "Our Story" badge on the collage page.
-
-   The title/text are positioned as % of the photo's own box (not the
-   viewport), computed from the Figma frame (1348x2023) so they land over
-   the same sky region and scale 1:1 with the photo at every width:
-     - title: top 20px / 2023px = 1%,     width 895px / 1348px = 66%
-     - text:  top 227px / 2023px = 11%,   width 1025px / 1348px = 76%
    ========================================================================== */
 
 .our-story {
@@ -26,47 +20,6 @@
   display: block;
   width: 100%;
   height: auto;
-}
-
-.our-story__title {
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  width: 66%;
-  transform: translateX(-50%);
-  margin: 0;
-  text-align: center;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-style: normal;
-  color: var(--color-text-muted, #4e513b);
-  font-size: clamp(1.75rem, 6.3vw, 5.3125rem); /* 85px at the photo's native 1349px width */
-  line-height: 1.1;
-}
-
-.our-story__text {
-  position: absolute;
-  top: 11%;
-  left: 50%;
-  width: 76%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.4rem, 1.2vw, 1.25rem);
-  text-align: left;
-}
-
-.our-story__text p {
-  margin: 0;
-  font-family: var(--font-body);
-  font-weight: 400;
-  color: var(--color-text, #33342a);
-  font-size: clamp(0.6rem, 1.78vw, 1.5rem); /* 24px at the photo's native 1349px width */
-  line-height: 1.7;
-}
-
-.our-story__signoff {
-  margin-top: clamp(0.2rem, 0.8vw, 0.75rem);
 }
 
 .our-story__back {

@@ -100,7 +100,7 @@
   width: auto;
   min-height: 0;
   padding: 0;
-  margin-top: -0.5rem;
+  margin-top: 0.5rem;
   background: none;
 }
 
@@ -111,7 +111,7 @@
   letter-spacing: 0.14em;
   color: var(--color-text-accent, #8a9a6e);
   font-size: clamp(1.05rem, 2.2vw, 1.75rem);
-  margin: 2rem 0 0;
+  margin: 1.25rem 0 0;
 }
 
 @media (max-width: 640px) {
@@ -124,6 +124,6 @@
   }
 
   .landing__hint {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 }

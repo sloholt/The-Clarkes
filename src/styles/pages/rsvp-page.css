@@ -80,6 +80,11 @@
   border-image-repeat: round;
 }
 
+/* after submission, drop the lace frame so only the thank-you message shows */
+.rsvp .lace-frame--submitted {
+  border: none;
+}
+
 /* =========================================================
    FORM
    ========================================================= */

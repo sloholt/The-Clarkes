@@ -51,10 +51,10 @@ export default function RsvpPage() {
         <header>
           <h1>RSVP</h1>
           <hr className="divider" />
-          <p className="subtitle">Kindly respond by October 30th</p>
+          <p className="subtitle">Kindly respond by March 6th, 2027</p>
         </header>
 
-        <div className="lace-frame">
+        <div className={submitted ? 'lace-frame lace-frame--submitted' : 'lace-frame'}>
           <form
             id="rsvpForm"
             className={submitted ? 'hidden' : undefined}
