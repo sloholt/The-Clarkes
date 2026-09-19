@@ -8,18 +8,17 @@
   container-type: inline-size;
   display: flex;
   justify-content: center;
-  /* at least one screen tall, like the intro sections; art stays centred */
-  align-items: center;
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* sized to its artwork, so it sits flush under the RSVP section and the page
+     ends where the lilies end */
+  align-items: flex-end;
   background: var(--color-base, #fbf8f1);
 }
 
 .contact__stage {
-  --u: calc(min(100cqw, 1280px) / 1280);
+  --u: calc(min(100cqw, 1920px) / 1280);
   position: relative;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1920px;
   aspect-ratio: 1280 / 316;
   overflow: hidden;
 }

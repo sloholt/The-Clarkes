@@ -37,13 +37,22 @@ export default function App() {
   // stays open and scrollable instead of resetting to the sealed envelope
   const [opened, setOpened] = useState(false)
 
+  // a link straight to a section ("/#collage", "/#rsvp") means the visitor is
+  // past the envelope — open the page so that section is reachable, even after
+  // a refresh or a direct visit to /details
+  const { hash } = useLocation()
+  const jumping = hash !== ''
+  useEffect(() => {
+    if (jumping) setOpened(true)
+  }, [jumping])
+
   return (
     <>
       <ScrollToTop />
       <Routes>
         <Route
           path="/"
-          element={<HomeScroll opened={opened} onOpen={() => setOpened(true)} />}
+          element={<HomeScroll opened={opened || jumping} onOpen={() => setOpened(true)} />}
         />
         <Route path="/our-story" element={<OurStoryPage />} />
         <Route path="/details" element={<DetailsPage />} />

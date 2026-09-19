@@ -89,11 +89,11 @@ export default function DetailsPage() {
           <Link to="/#collage" style={at(765, 2, 73, 52)}>Home</Link>
           <Link to="/our-story" style={at(855, 2, 137, 52)}>Our Story</Link>
           <Link to="mailto:ellianderson22@icloud.com" style={at(1009, 2, 138, 52)}>Contact</Link>
-          <Link to="/#rsvp" style={at(1164, 2, 85, 52)}>RSVP</Link>
+          <Link to="/#rsvp" style={at(1137, 2, 85, 52)}>RSVP</Link>
         </nav>
         <div className="details__rule details__rule--sage" style={rule(19, 60, 1250)} />
-        <Txt box={at(19, 8, 32, 40)} size={30} className="details__mono details__mono--w details__mono--sm">W</Txt>
-        <Txt box={at(39.8, 20.6, 32, 40)} size={30} className="details__mono details__mono--sm">E</Txt>
+        <Txt box={at(70.4, 8, 32, 40)} size={30} className="details__mono details__mono--w details__mono--sm">W</Txt>
+        <Txt box={at(91.2, 20.6, 32, 40)} size={30} className="details__mono details__mono--sm">E</Txt>
 
         {/* hero */}
         <Txt box={mid(640, 152, 220, 52)} size={34} spacing={3.4} className="details__sc">the finer</Txt>

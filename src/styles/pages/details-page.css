@@ -13,10 +13,10 @@
 }
 
 .details__stage {
-  --u: calc(min(100cqw, 1280px) / 1280);
+  --u: calc(min(100cqw, 1920px) / 1280);
   position: relative;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1920px;
   aspect-ratio: 1280 / 4036;
   overflow: hidden;
 }

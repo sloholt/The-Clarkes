@@ -19,7 +19,7 @@
  * ====================================== */
 
 .envelope {
-  --envelope-width: min(560px, 84vw);
+  --envelope-width: clamp(min(560px, 84vw), 44vw, 900px);
   --open-duration: 0.9s;
   /* after opening, the whole envelope fades away */
   --fade-out-delay: 0.5s;
@@ -107,7 +107,7 @@
 /* WE logo image, sized to roughly fill the box the old lettering occupied */
 .envelope__monogram img {
   display: block;
-  height: clamp(3rem, 6.9vw, 5.1rem);
+  height: clamp(3rem, 6.9vw, 8.5rem);
   width: auto;
 }
 
