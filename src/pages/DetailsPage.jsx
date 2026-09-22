@@ -156,7 +156,7 @@ export default function DetailsPage() {
         </Txt>
         <a
           className="details__badge"
-          style={at(505, 1741, 270, 90)}
+          style={at(532, 1765, 216, 53)}
           href={MAP_URL}
           target="_blank"
           rel="noopener noreferrer"

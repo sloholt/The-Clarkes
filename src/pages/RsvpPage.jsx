@@ -108,7 +108,7 @@ export default function RsvpPage() {
               <textarea
                 id="address"
                 name="address"
-                placeholder="Street, city, state, zip"
+                placeholder="Street, city, province, postal code"
               />
             </div>
 

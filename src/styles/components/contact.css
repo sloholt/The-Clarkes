@@ -19,7 +19,10 @@
   position: relative;
   width: 100%;
   max-width: 1920px;
-  aspect-ratio: 1280 / 316;
+  /* frame grew from 316 to fit the larger QUESTIONS? copy (title 48px,
+     3-line paragraph at 32px, closing line at 24px with the enlarged WE
+     mark) without clipping it */
+  aspect-ratio: 1280 / 360;
   overflow: hidden;
 }
 
@@ -35,22 +38,14 @@
 
 .contact__lilies {
   position: absolute;
+  /* flush against the frame's right edge (node 131:5), same as Figma; shifted
+     down past the frame's bottom so it bleeds off and gets cropped by the
+     stage's overflow: hidden, instead of leaving a gap under a shorter image */
   left: calc(var(--u) * 1079);
-  top: calc(var(--u) * -1);
+  top: calc(var(--u) * 89);
   width: calc(var(--u) * 201);
   height: calc(var(--u) * 316);
   object-fit: cover;
-  pointer-events: none;
-}
-
-/* WE_green (node 134:26), just left of "can't wait to celebrate…" */
-.contact__logo {
-  position: absolute;
-  left: calc(var(--u) * 492);
-  top: calc(var(--u) * 221);
-  width: calc(var(--u) * 42);
-  height: calc(var(--u) * 35);
-  object-fit: contain;
   pointer-events: none;
 }
 
@@ -60,30 +55,33 @@
   top: calc(var(--u) * 61);
   transform: translateX(-50%);
   width: calc(var(--u) * 656);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* measured gap between each block in the Figma frame — using a flex gap
+     (instead of fixed absolute offsets) keeps blocks flush regardless of how
+     tall the paragraph actually renders */
+  gap: calc(var(--u) * 36);
   text-align: center;
   color: #000;
 }
 
 .contact__title {
   margin: 0;
-  height: calc(var(--u) * 52);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: var(--font-subheading);
   font-weight: 400;
-  font-size: calc(var(--u) * 34);
-  letter-spacing: calc(var(--u) * 3.4);
+  font-size: calc(var(--u) * 48);
+  letter-spacing: calc(var(--u) * 4.8);
   color: var(--color-text-muted, #4e513b);
 }
 
 .contact__text {
-  margin: calc(var(--u) * 16) auto 0;
-  width: calc(var(--u) * 386);
+  margin: 0;
+  width: calc(var(--u) * 546);
   font-family: var(--font-body);
-  font-size: calc(var(--u) * 16);
-  line-height: calc(var(--u) * 25);
-  letter-spacing: calc(var(--u) * 1.6);
+  font-size: calc(var(--u) * 32);
+  line-height: calc(var(--u) * 35);
+  letter-spacing: calc(var(--u) * 3.2);
 }
 
 .contact__text a {
@@ -92,7 +90,21 @@
 }
 
 .contact__text--closing {
-  /* sits right of centre in the design (node 131:9) */
-  margin: calc(var(--u) * 19) 0 0 calc(var(--u) * 212);
-  width: calc(var(--u) * 291);
+  /* WE monogram (node 134:26) sits flush against the closing line, offset
+     30px from the paragraph's left edge */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: calc(var(--u) * 30);
+  font-size: calc(var(--u) * 24);
+  line-height: calc(var(--u) * 25);
+  letter-spacing: calc(var(--u) * 2.4);
+}
+
+.contact__logo {
+  width: calc(var(--u) * 61);
+  height: calc(var(--u) * 51);
+  object-fit: contain;
+  flex-shrink: 0;
+  pointer-events: none;
 }

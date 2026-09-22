@@ -19,9 +19,6 @@ export default function ContactComponent() {
           aria-hidden="true"
         />
 
-        {/* WE monogram leading the closing line (node 134:26) */}
-        <img className="contact__logo" src="/images/WE_green.png" alt="" aria-hidden="true" />
-
         <div className="contact__copy">
           <h2 className="contact__title">questions?</h2>
           <p className="contact__text">
@@ -29,6 +26,8 @@ export default function ContactComponent() {
             <a href="mailto:ellianderson22@icloud.com">ellianderson22@icloud.com</a>
           </p>
           <p className="contact__text contact__text--closing">
+            {/* WE monogram leading the closing line (node 134:26) */}
+            <img className="contact__logo" src="/images/WE_green.png" alt="" aria-hidden="true" />
             can&rsquo;t wait to celebrate with you!
           </p>
         </div>
